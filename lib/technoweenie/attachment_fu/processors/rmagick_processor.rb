@@ -44,7 +44,7 @@ module Technoweenie # :nodoc:
             img.thumbnail!(*size)
           elsif size.is_a?(String) && size =~ /^c.*$/ # Image cropping - example geometry string: c75x75
             dimensions = size[1..size.size].split("x")
-            img.crop_resized!(dimensions[0].to_i, dimensions[1].to_i)
+            img.crop_resized!(dimensions[0].to_i, dimensions[1].to_i, Magick::NorthGravity)
           else
             img.change_geometry(size.to_s) { |cols, rows, image| image.resize!(cols<1 ? 1 : cols, rows<1 ? 1 : rows) }
           end
